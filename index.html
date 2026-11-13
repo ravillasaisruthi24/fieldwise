@@ -1,0 +1,783 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fieldwise | Crop Disease Detection</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- ==================================
+         SIDEBAR
+    =================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo-section">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+
+            <div class="logo-text">
+                <h2>Fieldwise</h2>
+                <span>SMART AGRICULTURE</span>
+            </div>
+
+        </div>
+
+        <div class="menu-label">MAIN MENU</div>
+
+        <nav class="sidebar-menu">
+
+            <a href="#dashboard" class="menu-item active" data-section="dashboard">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#crop-analysis" class="menu-item" data-section="crop-analysis">
+                <i class="fa-solid fa-seedling"></i>
+                <span>Crop Analysis</span>
+            </a>
+
+            <a href="#disease-detection" class="menu-item" data-section="disease-detection">
+                <i class="fa-solid fa-microscope"></i>
+                <span>Disease Classes</span>
+            </a>
+
+            <a href="#image-upload" class="menu-item" data-section="image-upload">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>Image Upload</span>
+            </a>
+
+            <a href="#dataset" class="menu-item" data-section="dataset">
+                <i class="fa-solid fa-database"></i>
+                <span>Dataset</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-help">
+
+                <div class="help-icon">
+                    <i class="fa-solid fa-circle-question"></i>
+                </div>
+
+                <h4>Need Help?</h4>
+
+                <p>Explore crop disease information and dataset analytics.</p>
+
+            </div>
+
+            <div class="profile-section">
+
+                <div class="profile-avatar">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+
+                <div class="profile-info">
+                    <h4>Fieldwise Admin</h4>
+                    <span>Project Dashboard</span>
+                </div>
+
+                <i class="fa-solid fa-ellipsis"></i>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==================================
+         MAIN CONTENT
+    =================================== -->
+
+    <main class="main-content">
+
+        <!-- TOP HEADER -->
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <p class="breadcrumb">Pages / Dashboard</p>
+                    <h1>Crop Disease Dashboard</h1>
+                </div>
+
+            </div>
+
+            <div class="header-right">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    System Online
+                </div>
+
+                <button class="icon-button" id="refreshButton" title="Refresh dashboard">
+                    <i class="fa-solid fa-rotate"></i>
+                </button>
+
+                <div class="header-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span id="currentDate">Loading...</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==================================
+             DASHBOARD SECTION
+        =================================== -->
+
+        <section id="dashboard" class="content-section">
+
+            <!-- WELCOME BANNER -->
+
+            <div class="welcome-banner">
+
+                <div class="welcome-content">
+
+                    <span class="welcome-tag">
+                        <i class="fa-solid fa-seedling"></i>
+                        SMART FARMING ANALYTICS
+                    </span>
+
+                    <h2>Welcome to Fieldwise</h2>
+
+                    <p>
+                        Explore Indian crop disease classifications,
+                        analyze agricultural datasets and discover
+                        crop health insights.
+                    </p>
+
+                    <a href="#crop-analysis" class="banner-button">
+                        Explore Analytics
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+                <div class="welcome-illustration">
+                    <i class="fa-solid fa-wheat-awn"></i>
+                    <i class="fa-solid fa-leaf leaf-one"></i>
+                    <i class="fa-solid fa-leaf leaf-two"></i>
+                </div>
+
+            </div>
+
+
+            <!-- STATISTICS CARDS -->
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Overview</h2>
+                    <p>Dataset statistics at a glance</p>
+                </div>
+
+                <span class="live-label">
+                    <span class="status-dot"></span>
+                    Live Dataset
+                </span>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <div class="stat-icon green">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <span class="stat-label">CROP CATEGORIES</span>
+                    </div>
+
+                    <h2 id="totalCrops">--</h2>
+
+                    <p>
+                        <i class="fa-solid fa-arrow-up"></i>
+                        Indian agricultural crops
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <div class="stat-icon blue">
+                            <i class="fa-solid fa-virus"></i>
+                        </div>
+                        <span class="stat-label">DISEASE CLASSES</span>
+                    </div>
+
+                    <h2 id="totalClasses">--</h2>
+
+                    <p>
+                        <i class="fa-solid fa-chart-line"></i>
+                        Total classification classes
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <div class="stat-icon orange">
+                            <i class="fa-solid fa-images"></i>
+                        </div>
+                        <span class="stat-label">TARGET IMAGES</span>
+                    </div>
+
+                    <h2 id="totalImages">--</h2>
+
+                    <p>
+                        <i class="fa-solid fa-database"></i>
+                        Dataset image target count
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <div class="stat-icon purple">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <span class="stat-label">HEALTHY CLASSES</span>
+                    </div>
+
+                    <h2 id="healthyClasses">--</h2>
+
+                    <p>
+                        <i class="fa-solid fa-shield-heart"></i>
+                        Healthy crop classifications
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHARTS -->
+
+            <div class="section-heading chart-heading">
+
+                <div>
+                    <h2>Crop Analytics</h2>
+                    <p>Visual representation of dataset distribution</p>
+                </div>
+
+            </div>
+
+
+            <div class="charts-grid">
+
+                <div class="chart-card">
+
+                    <div class="chart-header">
+
+                        <div>
+                            <h3>Crop-wise Class Distribution</h3>
+                            <p>Number of classes per crop</p>
+                        </div>
+
+                        <i class="fa-solid fa-chart-column"></i>
+
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="cropChart"></canvas>
+                    </div>
+
+                </div>
+
+
+                <div class="chart-card">
+
+                    <div class="chart-header">
+
+                        <div>
+                            <h3>Healthy vs Diseased</h3>
+                            <p>Classification distribution</p>
+                        </div>
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                    </div>
+
+                    <div class="chart-container doughnut-container">
+                        <canvas id="healthChart"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK CROP OVERVIEW -->
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Crop Categories</h2>
+                    <p>Explore supported Indian crops</p>
+                </div>
+
+                <a href="#crop-analysis" class="view-all-link">
+                    View All
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <div class="crop-grid" id="cropCards">
+
+                <div class="loading-message">
+                    Loading crop categories...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================
+             CROP ANALYSIS SECTION
+        =================================== -->
+
+        <section id="crop-analysis" class="content-section hidden">
+
+            <div class="page-title">
+                <div>
+                    <h2>Crop Analysis</h2>
+                    <p>Explore crop-wise disease classification information.</p>
+                </div>
+            </div>
+
+
+            <div class="filter-card">
+
+                <div class="filter-heading">
+                    <i class="fa-solid fa-filter"></i>
+                    Filter Crop Information
+                </div>
+
+                <label for="cropSelect">Select Crop</label>
+
+                <select id="cropSelect">
+                    <option value="">All Crops</option>
+                </select>
+
+            </div>
+
+
+            <div class="crop-details-card" id="cropDetails">
+
+                <div class="empty-state">
+                    <i class="fa-solid fa-seedling"></i>
+                    <h3>Select a crop</h3>
+                    <p>Choose a crop to explore its disease classes.</p>
+                </div>
+
+            </div>
+
+
+            <div class="chart-card analysis-chart">
+
+                <div class="chart-header">
+                    <div>
+                        <h3>Crop-wise Image Distribution</h3>
+                        <p>Target image count for each crop</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="imageChart"></canvas>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================
+             DISEASE CLASSES SECTION
+        =================================== -->
+
+        <section id="disease-detection" class="content-section hidden">
+
+            <div class="page-title">
+
+                <div>
+                    <h2>Disease Classification</h2>
+                    <p>Explore all disease classes available in the dataset.</p>
+                </div>
+
+            </div>
+
+
+            <div class="table-card">
+
+                <div class="table-header">
+
+                    <div>
+                        <h3>Disease Class Directory</h3>
+                        <p id="tableCount">Loading records...</p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-filters">
+
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="diseaseSearch"
+                            placeholder="Search crop, disease or class..."
+                        >
+                    </div>
+
+
+                    <select id="diseaseCropFilter">
+                        <option value="">All Crops</option>
+                    </select>
+
+
+                    <select id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="Healthy">Healthy</option>
+                        <option value="Diseased">Diseased</option>
+                    </select>
+
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>CLASS LABEL</th>
+                                <th>CROP</th>
+                                <th>DISEASE</th>
+                                <th>STATUS</th>
+                                <th>TARGET IMAGES</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="diseaseTableBody">
+
+                            <tr>
+                                <td colspan="5" class="loading-message">
+                                    Loading disease information...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="table-footer">
+                    <span id="recordCount">0 records</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================
+             IMAGE UPLOAD SECTION
+        =================================== -->
+
+        <section id="image-upload" class="content-section hidden">
+
+            <div class="page-title">
+
+                <div>
+                    <h2>Plant Image Upload</h2>
+                    <p>Upload a plant photograph for future AI-based disease analysis.</p>
+                </div>
+
+            </div>
+
+
+            <div class="upload-card">
+
+                <div class="upload-icon">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+
+                <h3>Upload Plant Image</h3>
+
+                <p>
+                    Select a clear plant leaf image in JPG, JPEG or PNG format.
+                </p>
+
+
+                <div class="upload-area" id="uploadArea">
+
+                    <input
+                        type="file"
+                        id="plantImage"
+                        accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+                        hidden
+                    >
+
+                    <i class="fa-solid fa-image"></i>
+
+                    <h4>Drag and drop your image here</h4>
+
+                    <span>or</span>
+
+                    <button class="browse-button" id="browseButton">
+                        Browse Images
+                    </button>
+
+                    <p>Supported formats: JPG, JPEG, PNG (Maximum 10 MB)</p>
+
+                </div>
+
+
+                <div id="imagePreview" class="image-preview hidden">
+
+                    <img id="previewImage" src="" alt="Plant preview">
+
+                    <div class="preview-details">
+                        <h4 id="imageName">Selected image</h4>
+                        <p id="imageSize"></p>
+                    </div>
+
+                    <button id="removeImage" class="remove-button">
+                        <i class="fa-solid fa-trash"></i>
+                        Remove
+                    </button>
+
+                </div>
+
+
+                <div class="upload-note">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <p>
+                        Image upload is currently a preview feature.
+                        A trained machine learning model is required
+                        to generate actual crop disease predictions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================
+             DATASET SECTION
+        =================================== -->
+
+        <section id="dataset" class="content-section hidden">
+
+            <div class="page-title">
+
+                <div>
+                    <h2>Dataset Information</h2>
+                    <p>Details of the Indian Crop Disease Dataset.</p>
+                </div>
+
+            </div>
+
+
+            <div class="dataset-info-grid">
+
+                <div class="dataset-info-card">
+
+                    <i class="fa-solid fa-file-excel"></i>
+
+                    <span>DATASET FILE</span>
+
+                    <h3>Indian Crop Disease Dataset</h3>
+
+                    <p>Excel-based agricultural classification dataset</p>
+
+                </div>
+
+
+                <div class="dataset-info-card">
+
+                    <i class="fa-solid fa-table"></i>
+
+                    <span>EXCEL SHEETS</span>
+
+                    <h3>2 Sheets</h3>
+
+                    <p>Disease Classes and Crop Summary</p>
+
+                </div>
+
+
+                <div class="dataset-info-card">
+
+                    <i class="fa-solid fa-seedling"></i>
+
+                    <span>CROP CATEGORIES</span>
+
+                    <h3 id="datasetCrops">--</h3>
+
+                    <p>Indian agricultural crops</p>
+
+                </div>
+
+
+                <div class="dataset-info-card">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                    <span>CLASS LABELS</span>
+
+                    <h3 id="datasetClasses">--</h3>
+
+                    <p>Available classification records</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-card dataset-card">
+
+                <div class="table-header">
+
+                    <div>
+                        <h3>Dataset Structure</h3>
+                        <p>Information available in the Excel workbook</p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>SHEET NAME</th>
+                                <th>DESCRIPTION</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Disease Classes</td>
+                                <td>Crop names, disease names, class labels, status and target image counts.</td>
+                            </tr>
+
+                            <tr>
+                                <td>Crop Summary</td>
+                                <td>Crop-wise number of classes and target image counts.</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div class="dataset-description">
+
+                <div class="description-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div>
+                    <h3>About the Dataset</h3>
+
+                    <p id="datasetDescription">
+                        Loading dataset description...
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================
+             FOOTER
+        =================================== -->
+
+        <footer class="footer">
+
+            <p>
+                © 2026 <strong>Fieldwise</strong>.
+                Indian Crop Disease Detection System.
+            </p>
+
+            <span>
+                <i class="fa-solid fa-leaf"></i>
+                Smart Agriculture Analytics
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- JavaScript -->
+<script src="/app.js"></script>
+
+</body>
+</html>

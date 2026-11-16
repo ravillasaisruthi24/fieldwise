@@ -1,9 +1,8 @@
-
 Flask
 flask-cors
 pandas
 numpy
 scikit-learn
 matplotlib
-openpyxl
+openpyxl==3.1.5
 gunicorn
